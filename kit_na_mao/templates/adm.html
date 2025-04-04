@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Admin</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+    <div class="w3-container">
+        <h2>Cadastros</h2>
+        <table class="w3-table w3-bordered">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Comprovante</th>
+                <th>Documento</th>
+                <th>Ações</th>
+            </tr>
+            {% for cadastro in cadastros %}
+            <tr>
+                <td>{{ cadastro[0] }}</td>
+                <td>{{ cadastro[1] }}</td>
+                <td><a href="{{ url_for('baixar_arquivo', filename=cadastro[2]) }}">Download</a></td>
+                <td><a href="{{ url_for('baixar_arquivo', filename=cadastro[3]) }}">Download</a></td>
+                <td>
+                    <form action="{{ url_for('excluir_cadastro', id=cadastro[0]) }}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                        <button class="w3-button w3-red" type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <a href="{{ url_for('logout') }}" class="w3-button w3-red w3-margin-top">Sair</a>
+    </div>
+    <hr>
+    
+<!-- Formulário para adicionar imagem ao carrossel -->
+<form action="{{ url_for('upload_imagem_carrossel') }}" method="post" enctype="multipart/form-data" class="w3-container w3-light-grey w3-padding-16 w3-margin-top">
+    <label for="imagem">Adicionar imagem ao carrossel:</label>
+    <input type="file" name="imagem" accept="image/*" required class="w3-input w3-border">
+    <button type="submit" class="w3-button w3-green w3-margin-top">Enviar</button>
+</form>
+
+    
+</body>
+</html>
