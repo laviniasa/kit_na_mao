@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: kit-na-mao
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
-    region: oregon
-    plan: free
