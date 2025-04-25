@@ -1,650 +1,111 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kit na Mão - Retirada de Kits para Corredores</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="static/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit na Mão - Login</title>
     <link rel="shortcut icon" href="/static/mmm.jpg" type="image/x-icon">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <style>
- html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  background-color: #0f2650;
-  color: white;
-  font-family: 'Segoe UI', sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0f2650;
+            flex-direction: column;
+        }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+        .login-box {
+            width: 400px;
+            padding: 40px;
+            background: rgb(255, 255, 255);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            text-align: center;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+        .login-box h2 {
+            margin-bottom: 30px;
+            color: rgb(226, 89, 89);
+        }
 
-.w3-white { background-color: white !important; color: black; }
-.w3-light-grey { background-color: #f1f1f1 !important; }
-.w3-black { background-color: black !important; }
+        .user-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
 
-.w3-bar, .w3-top {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 9999;
-}
+        .user-box input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #000000;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #000000;
+            outline: none;
+        }
 
-.center {
-  width: 100%;
-  min-height: 300px; /* altura mínima maior para o carrossel */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #0a2a55;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-}
+        .user-box label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: #aaa;
+            font-size: 16px;
+            transition: 0.5s;
+        }
 
-.carrossel {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        .user-box input:focus ~ label,
+        .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: rgb(226, 89, 89);
+            font-size: 12px;
+        }
 
-.carrosselBox {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  width: 100%;
-  height: 460px; /* Ajuste para um valor menor */
-  padding: 20px;
-}
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: rgb(226, 89, 89);
+            font-size: 16px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 2px solid rgb(226, 89, 89);
+            border-radius: 5px;
+            transition: 0.5s;
+            cursor: pointer;
+            background: transparent;
+            margin-top: 10px;
+        }
 
-.carrosselBox img {
-  max-height: 100%; /* garante que a imagem não ultrapasse a altura da div */
-  height: auto;
-  width: auto;
-  object-fit: contain;
-}
-
-.carrosselBox img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  opacity: 0.8;
-}
-
-.switchLeft, .switchRight {
-  all: unset;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #0a2a55;
-  font-size: 32px;
-  font-weight: bold;
-  padding: 12px;
-  cursor: pointer;
-  z-index: 10;
-  border-radius: 50%;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.switchLeft {
-  left: 10px;
-}
-
-.switchRight {
-  right: 10px;
-}
-
-.switchLeft:focus, .switchRight:focus {
-  outline: 2px solid #fff;
-}
-
-.section-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: white;
-  text-align: center;
-  margin: 40px 0 20px;
-  border-bottom: 2px solid #ffffff50;
-  padding-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-title i {
-  font-size: 28px;
-}
-
-form label {
-  font-weight: bold;
-  font-size: 16px;
-  color: #0f2650;
-}
-
-form p {
-  font-size: 15px;
-  color: white;
-}
-
-form input[type="text"],
-form input[type="file"] {
-  font-size: 15px;
-}
-
-form button {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.titulo-sessao {
-  font-size: 24px;
-  font-weight: 600;
-  color: #f0f0f0;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#contato {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.w3-container {
-  padding-bottom: 32px;
-}
-
-footer {
-  margin-top: 80px;
-}
-
-#mobileMenu {
-  position: absolute;
-  top: 64px;
-  width: 100%;
-  z-index: 9999;
-}
-
-.contato-link {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.contato-link:hover {
-  text-decoration: underline;
-  color: #2980b9;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .carrosselBox img {
-    width: 180px;
-    height: 180px;
-  }
-
-  .switchLeft, .switchRight {
-    font-size: 24px;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carrosselBox img {
-    width: 160px;
-    height: 160px;
-  }
-
-  .switchLeft, .switchRight {
-    font-size: 20px;
-    padding: 8px;
-  }
-}
-@media (max-width: 768px) {
-    .w3-row-padding {
-      flex-direction: column; /* Empilhar as colunas */
-    }
-
-    .w3-col {
-      margin-right: 0; /* Remover margem da direita */
-      margin-bottom: 20px; /* Adicionar margem abaixo da imagem */
-    }
-  }
-  .instagram-photo {
-        position: relative;
-        overflow: hidden;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
-    .instagram-photo:hover {
-        transform: scale(1.05);
-    }
-    .instagram-photo img {
-        width: 100%;
-        height: auto;
-        transition: opacity 0.3s ease;
-    }
-    .instagram-photo:hover img {
-        opacity: 0.8;
-    }
-    .overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    .instagram-photo:hover .overlay {
-        opacity: 1;
-    }
-    .icon {
-        font-size: 3rem;
-        color: white;
-    } 
-    
-
-      </style>
-      
-    
-    
+        .btn:hover {
+            background: rgb(226, 89, 89);
+            color: #0f2650;
+        }
+    </style>
 </head>
 <body>
-   
-
-<!-- Navbar -->
-<div class="w3-top">
-    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
-        <a href="#home" class="w3-bar-item w3-button"><b>Kit</b> na Mão</a>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <div class="w3-panel w3-green w3-small success-message" style="position: absolute; top: 0; left: 0; width: 100%; margin: 0; padding: 5px 10px; border-radius: 5px; font-size: 14px;">
-                <p>{{ messages[0][1] }}</p> <!-- Mensagem de sucesso -->
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="{{ url_for('auth') }}" method="post">
+            <div class="user-box">
+                <input type="text" name="usuario" required>
+                <label>Usuário</label>
             </div>
-          {% endif %}
-        {% endwith %}
-    
-
-        <div class="w3-right w3-hide-small">
-            <a href="#sobre" class="w3-bar-item w3-button">Sobre</a>
-            <a href="#cadastro" class="w3-bar-item w3-button">Galeria</a>
-            <a href="#contato" class="w3-bar-item w3-button">Contato</a>
-            <a href="{{ url_for('login') }}" class="w3-bar-item w3-button w3-red">Admin</a>
-        </div>
-        
-        <a href="javascript:void(0);" class="w3-bar-item w3-button w3-right w3-hide-medium w3-hide-large" onclick="toggleMenu()" title="Menu">&#9776;</a>
-    </div>  
-    
-
-
-
-
-    <!-- Menu Mobile -->
-    <div id="mobileMenu" class="w3-bar-block w3-white w3-hide">
-
-        <a href="#sobre" class="w3-bar-item w3-button">Sobre</a>
-        <a href="#cadastro" class="w3-bar-item w3-button">Cadastro</a>
-        <a href="#contato" class="w3-bar-item w3-button">Contato</a>
-        <a href="{{ url_for('login') }}" class="w3-bar-item w3-button w3-red">Admin</a>
-    </div>
-
-</div>
-
-<!-- Header -->
-<header id="home" class="header-image"></header>
-    <img src="/static/oficial_2.jpg"
-    alt="Corrida"
-    style="width: 100%; height: auto; object-fit: contain; display: block; margin-top: 54px;">
-
-</header>
-<!-- SOBRE NÓS -->
-<div class="w3-container w3-padding-64 w3-white" id="sobre">
-  <div class="w3-content" style="max-width:1100px">
-    <div class="w3-row-padding w3-center w3-margin-top" style="display: flex; align-items: center; flex-wrap: wrap;">
-
-      <!-- IMAGEM À ESQUERDA -->
-      <div class="w3-col" style="flex: 1; margin-right: 20px;">
-        <img src="../static/time.jpeg" alt="Quem Somos" style="width:100%; border-radius: 10px;">
-      </div>
-
-      <!-- TEXTO À DIREITA -->
-      <div class="w3-col" style="flex: 1;">
-        <h2 class="w3-xxxlarge" style="font-weight:bold; color:#333;">Quem Somos</h2>
-        <hr style="width:80px; border:3px solid #ff9800; margin:auto; margin-bottom:30px;">
-        <p class="w3-large w3-justify" style="line-height:1.8; font-size:18px;">
-          Tudo começou com quatro amigos, recém-chegados ao mundo da corrida. A empolgação era grande, mas logo percebemos um problema: quem buscaria nossos kits?
-          <br><br>
-          Foi aí que tivemos a ideia: e se fôssemos nós a solução para esse problema? Se tantas pessoas precisavam de alguém para retirar seus kits, por que não criar um serviço dedicado a isso?
-          <br><br>
-          Assim nasceu o <strong style="color:#ff9800;">Kit na Mão!</strong>, um projeto feito por corredores, para corredores. Nosso objetivo é simples: facilitar sua vida, garantindo que seu kit esteja com você no dia da corrida, sem preocupações.
-        </p>
-      </div>
+            <div class="user-box">
+                <input type="password" name="senha" required>
+                <label>Senha</label>
+            </div>
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="btn">Voltar</a>
 
     </div>
-  </div>
-</div>
-
-
-<!-- Sobre -->
-<div class="w3-container w3-padding-64" id="sobre">
-
-    <div class="w3-row-padding w3-margin-top">
-
-    <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-card w3-hover-shadow w3-center w3-padding w3-white" style="height: 250px;">
-        <i class="fa fa-flag-checkered w3-jumbo w3-text-red"></i>
-        <h4 class="w3-margin-top">Facilidade</h4>
-        <p>Chegamos para facilitar sua corrida!</p>
-        <p class="w3-text-grey w3-small" style="margin-top: 12px;">
-            💰 <strong>R$15,00 por kit</strong><br>
-            Rápido. Simples. Seguro.
-        </p>
-        </div>
-    </div>
-
-    <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-card w3-hover-shadow w3-center w3-padding w3-white" style="height: 250px;">
-        <i class="fa fa-box-open w3-jumbo w3-text-blue"></i>
-        <h4 class="w3-margin-top">Retirada + Entrega</h4>
-        <p>Retiramos seu kit e entregamos diretamente na arena.</p>
-        </div>
-    </div>
-
-    <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-card w3-hover-shadow w3-center w3-padding w3-white" style="height: 250px;">
-        <i class="fa fa-clock w3-jumbo w3-text-green"></i>
-        <h4 class="w3-margin-top">Pontualidade</h4>
-        <p>Chegamos <strong>1h antes da largada</strong>, kit em mãos!</p>
-        </div>
-    </div>
-
-    <div class="w3-col l3 m6 w3-margin-bottom">
-        <div class="w3-card w3-hover-shadow w3-center w3-padding w3-white" style="height: 250px;">
-        <i class="fa fa-lock w3-jumbo w3-text-purple"></i>
-        <h4 class="w3-margin-top">Segurança</h4>
-        <p>Envie seus documentos com praticidade e confiança.</p>
-        
-        </div>
-    </div>
-</div>
-
-
-<div class="w3-container w3-padding-32">
-  <h2 class="titulo-sessao"><i class="fa fa-calendar"></i> Calendário de Corridas</h2>
-  <p style="text-align: center; font-size: 16px; margin-top: 8px; color: #ffffff;">
-    Clique na imagem da corrida desejada para preencher o formulário de inscrição.
-  </p>
-</div>
-<!-- Carrossel -->
-<div class="center">
-  <div class="carrossel">
-    <button class="switchLeft"> &lt; </button>
-
-    <div class="carrosselBox">
-      {% if imagens_carrossel %}
-        {% for imagem in imagens_carrossel %}
-        <img 
-        src="{{ url_for('static', filename='img/' + imagem[0]) }}" 
-        alt="Imagem do carrossel {{ imagem[1] }}" 
-        class="abrirModal"
-        data-corrida-id="{{ loop.index }}" 
-        data-corrida-nome="{{ imagem[1] }}">
-      
-        {% endfor %}
-      {% else %}
-        <p>Nenhuma imagem no carrossel ainda.</p>
-      {% endif %}
-    </div>
-    
-    
-    <button class="switchRight"> &gt; </button>
-  </div>
-</div>
-    <button class="switchRight"> &gt; </button>
-  </div>
-</div>
-<main style="margin-top: 60px;"> <!-- Aqui adicionamos espaço acima -->
-  <div class="w3-container w3-center" id="cadastro">
-      
-
-    <!-- Modal -->
-    <div id="meuModal" class="w3-modal">
-      <div class="w3-modal-content w3-animate-top w3-card-4 w3-white" style="max-width: 600px;">
-        <header class="w3-container w3-blue">
-          <span onclick="fecharModal()" class="w3-button w3-display-topright">&times;</span>
-          <h2 id="tituloCorrida">Nome da Corrida</h2>
-        </header>
-
-        <div class="w3-container w3-padding">
-          <!-- Formulário dentro do modal -->
-          <form action="{{ url_for('cadastro') }}" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="corrida_nome" id="inputCorridaNome"> <!-- Campo oculto para o nome da corrida -->
-
-            <label>Nome Completo</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text" name="nome" required>
-
-            <label>Email</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="email" name="email" required>
-
-            <label>Comprovante de Inscrição</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="file" name="comprovante" accept="image/*,.pdf" required>
-
-            <label>Cópia do RG</label>
-            <input class="w3-input w3-border w3-margin-bottom" type="file" name="documento" accept="image/*,.pdf" required>
-
-            <!-- Exibindo o QR Code -->
-            <div id="qrcode" class="w3-center w3-margin-top"></div>
-
-            <!-- Link de pagamento -->
-            <p>Link de Pagamento: <span id="linkPagamento">{{ link_pagamento }}</span></p>
-
-            <button class="w3-button w3-green w3-margin-top" type="submit">Enviar</button>
-      
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-
-
-
-
-<!-- Galeria de Fotos Estilo Instagram -->
-<div class="w3-container w3-padding-32" id="galeria">
-  <h2 class="titulo-sessao"><i class="fa fa-image"></i> Galeria de Fotos</h2>
-
-  <div class="w3-row-padding w3-padding-16">
-      <!-- Foto 1 -->
-      <div class="w3-col l4 m6 s12">
-          <div class="instagram-photo">
-              <img src="../static/man-1838991_1280.jpg" alt="Evento 1">
-              <div class="overlay">
-                  <div class="icon"><i class="fa fa-heart"></i></div>
-              </div>
-          </div>
-      </div>
-      <!-- Foto 2 -->
-      <div class="w3-col l4 m6 s12">
-          <div class="instagram-photo">
-              <img src="../static/man-1838991_1280.jpg" alt="Evento 2">
-              <div class="overlay">
-                  <div class="icon"><i class="fa fa-heart"></i></div>
-              </div>
-          </div>
-      </div>
-      <!-- Foto 3 -->
-      <div class="w3-col l4 m6 s12">
-          <div class="instagram-photo">
-              <img src="../static/man-1838991_1280.jpg" alt="Evento 3">
-              <div class="overlay">
-                  <div class="icon"><i class="fa fa-heart"></i></div>
-              </div>
-          </div>
-      </div>
-      <!-- Foto 4 -->
-      <div class="w3-col l4 m6 s12">
-          <div class="instagram-photo">
-              <img src="../static/man-1838991_1280.jpg" alt="Evento 4">
-              <div class="overlay">
-                  <div class="icon"><i class="fa fa-heart"></i></div>
-              </div>
-          </div>
-      </div>
-      <!-- Foto 5 -->
-      <div class="w3-col l4 m6 s12">
-          <div class="instagram-photo">
-              <img src="../static/man-1838991_1280.jpg" alt="Evento 5">
-              <div class="overlay">
-                  <div class="icon"><i class="fa fa-heart"></i></div>
-              </div>
-          </div>
-      </div>
-      <!-- Foto 6 -->
-      <div class="w3-col l4 m6 s12">
-          <div class="instagram-photo">
-              <img src="../static/man-1838991_1280.jpg" alt="Evento 6">
-              <div class="overlay">
-                  <div class="icon"><i class="fa fa-heart"></i></div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
-
-<!-- teste -->
-<div class="container">
-    <div id="wrapper">
-    </div>
-</div>
-
-<!-- Contato -->
-<main style="margin-top: 60px;"> <!-- aqui adicionamos espaço acima -->
-    <div class="w3-container w3-center" id="contato">
-  
-      <div class="w3-row-padding w3-margin-top">
-        <div class="w3-third w3-center w3-padding">
-          <i class="fab fa-instagram contato-icon" style="color: #e1306c; font-size: 36px;"></i>
-          <p style="font-size: 18px;">
-            <a href="https://www.instagram.com/_kitnamao" class="contato-link" target="_blank">@_kitnamao</a>
-          </p>
-        </div>
-        <div class="w3-third w3-center w3-padding">
-          <i class="fas fa-phone contato-icon" style="color: limegreen; font-size: 36px;"></i>
-          <p style="font-size: 18px;">
-            <a href="tel:+5519971015709" class="contato-link">(19) 97101-5709</a>
-          </p>
-        </div>
-        <div class="w3-third w3-center w3-padding">
-          <i class="fas fa-envelope contato-icon" style="color: orange; font-size: 36px;"></i>
-          <p style="font-size: 18px;">
-            <a href="mailto:kitnamaointerior@gmail.com" class="contato-link">kitnamaointerior@gmail.com</a>
-          </p>
-        </div>
-      </div>
-  
-    </div>
-  </main>
-<a href="https://wa.me/SEUNUMERO" class="w3-button w3-green w3-xlarge" style="position:fixed; bottom:20px; right:20px; z-index:999;">
-  <i class="fab fa-whatsapp"></i>
-</a>
-  
-  
-
-
-  
-
-<script src="/static/script.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-
-
-<footer class="w3-center w3-black w3-padding-16" style="margin-top: 60px;">
-    <p>&copy; 2025 Kit na Mão - Todos os direitos reservados.</p>
-  </footer>
-  
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-  <script>
-    // Função para abrir o modal
-    function abrirModal(corridaNome) {
-      // Define o título do modal
-      document.getElementById("tituloCorrida").innerText = corridaNome;
-  
-      // Define o valor do campo oculto para o nome da corrida
-      document.getElementById("inputCorridaNome").value = corridaNome;
-  
-      // Gera o link de pagamento (você pode ajustá-lo conforme necessário)
-      const linkPagamento = `https://exemplo.com/pagamento?corrida=${corridaNome}`;
-      document.getElementById("linkPagamento").innerText = linkPagamento;
-  
-      // Gera o QR Code
-      QRCode.toCanvas(document.getElementById("qrcode"), linkPagamento, function (error) {
-        if (error) console.error(error);
-      });
-  
-      // Exibe o modal
-      document.getElementById("meuModal").style.display = 'block';
-    }
-  
-    // Função para fechar o modal
-    function fecharModal() {
-      document.getElementById("meuModal").style.display = 'none';
-    }
-  
-    // Adiciona evento de clique nas imagens do carrossel
-    document.querySelectorAll('.abrirModal').forEach(function (img) {
-      img.addEventListener('click', function () {
-        const corridaNome = this.getAttribute('data-corrida-nome');
-        abrirModal(corridaNome);
-      });
-    });
-    window.onload = function() {
-        var successMessage = document.querySelector('.success-message');
-        if (successMessage) {
-            // Faz a mensagem desaparecer após 5 segundos (5000 ms)
-            setTimeout(function() {
-                successMessage.style.display = 'none';
-            }, 5000);
-        }
-    }
-  
-    
-  </script>
-  
-  
-  
-  
-
 </body>
 </html>
